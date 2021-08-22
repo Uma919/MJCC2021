@@ -3,7 +3,7 @@
 
 ## Microparticle Counter
 ### 微粒子測定器  
-ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，1分毎にイヤホンを介してお知らせします．
+ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，1分毎にイヤホンを介してお知らせします．  
 <img src="./doc/MicroparticleCounter1.png" width="320px">
 <img src="./doc/MicroparticleCounter2.png" width="320px">
 
