@@ -15,7 +15,7 @@ float ratio = 0;
 float concentration = 0;
 
 /*--- Ticker ---*/
-const float period = 60 * 15;  // Speak once per 15 minutes
+const float period = 60 * 1;  // Speak once per 1 minutes
 
 /*--- Interruption Processing ---*/
 void speak(){
@@ -25,15 +25,13 @@ void speak(){
             atomSPK.playBeep(1000, 200, 10000, false);
         }
     }else if(3000 > concentration && concentration > 1000){
-        for(int n = 0; n < 3; n ++){  // Caution
+        for(int n = 0; n < 2; n ++){  // Caution
             atomSPK.playBeep(2000, 200, 10000, false);
             atomSPK.playBeep(1000, 200, 10000, false);
         }
     }else if(1000 >= concentration){  // Notice
-        for(int n = 0; n < 1; n ++){
-            atomSPK.playBeep(2000, 200, 10000, false);
-            atomSPK.playBeep(1000, 200, 10000, false);
-        }
+        atomSPK.playBeep(1000, 200, 10000, false);
+        atomSPK.playBeep(2000, 200, 10000, false);
     }
 }
 
@@ -61,7 +59,7 @@ void loop(){
     duration = pulseIn(pin, LOW);
     lowpulseoccupancy = lowpulseoccupancy + duration;
 
-    if((millis() - starttime) > sampletime_ms){  //if the sampel time == 30s
+    if((millis() - starttime) > sampletime_ms){  //if the sample time == 30s
         ratio = lowpulseoccupancy / (sampletime_ms * 10.0);  // Integer percentage 0=>100
         concentration = 1.1 * pow(ratio, 3) - 3.8 * pow(ratio, 2) + 520 * ratio + 0.62;  // using spec sheet curve
         
@@ -85,4 +83,3 @@ void loop(){
         starttime = millis();
     }
 }
-
