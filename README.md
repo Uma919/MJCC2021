@@ -11,8 +11,8 @@
 ## 制御基板や電子部品
  * ATOM NS4168搭載 スピーカーキット  
    [販売ページ](https://ssci.to/7092)  
-   [商品ページ](https://docs.m5stack.com/en/atom/atom_spk?id=product-features)    
+   [製品ページ](https://docs.m5stack.com/en/atom/atom_spk?id=product-features)    
  * GROVE - ダストセンサ  
    [販売ページ](https://ssci.to/3081)  
-   [商品ページ](https://wiki.seeedstudio.com/jp/Grove-Dust_Sensor/)  
+   [製品ページ](https://wiki.seeedstudio.com/jp/Grove-Dust_Sensor/)  
    [データシート](https://files.seeedstudio.com/wiki/Grove_Dust_Sensor/resource/Grove_-_Dust_sensor.pdf)  
