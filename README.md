@@ -1,9 +1,8 @@
 # MJCC2021
 本リポジトリは[M5Stack Japan Creativity Contest 2021](https://info.switch-science.com/m5stack-creativity-contest-2021)開発リポジトリです． 
 
-## Microparticle Counter
-### 微粒子測定器  
-ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，1分毎にイヤホンを介してお知らせします．  
+## Microparticle Sound Generator
+ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，一定時間の時系列波形から音を出力する．  
 <img src="./doc/MicroparticleCounter1.png" width="320px">
 <img src="./doc/MicroparticleCounter2.png" width="320px">
 
