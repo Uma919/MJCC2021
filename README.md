@@ -16,3 +16,11 @@
    [販売ページ](https://ssci.to/3081)  
    [製品ページ](https://wiki.seeedstudio.com/jp/Grove-Dust_Sensor/)  
    [データシート](https://files.seeedstudio.com/wiki/Grove_Dust_Sensor/resource/Grove_-_Dust_sensor.pdf)  
+## 筐体部品等
+* 筐体部品(3Dプリント)  
+  [筐体部品1](./stl/3dp_parts_1.stl)  
+  [筐体部品2](./stl/3dp_parts_2.stl) 
+* その他締結部品  
+  M3ねじ  
+  M3ナット  
+  M3 20mmスペーサー
