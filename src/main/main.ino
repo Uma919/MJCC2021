@@ -1,9 +1,9 @@
 #include "M5Atom.h"
 #include "AtomSPK.h"
-#include <cppQueue.h>
+#include "cppQueue.h"
 
 ATOMSPK atomSPK;
-cppQueue q(sizeof(float), 30, FIFO);
+cppQueue que(sizeof(float), 30, FIFO);
 
 /*--- Sensor ---*/
 int pin = 32;
@@ -17,20 +17,22 @@ float concentration = 0;
 /*--- Sound Processing ---*/
 void speak(){
     float TmpData[30];
-    
-    while(q.isEmpty() == false){
-        int idx = 0;
+    int idx = 0;
+    while(que.isEmpty() == false){
         float popTmpData;
-        q.pop(&popTmpData);
+        que.pop(&popTmpData);
         TmpData[idx] = popTmpData;
         idx ++;
     }
-
-    if(sizeof(TmpData) / sizeof(float) > 0){
+    
+    if((sizeof(TmpData) / sizeof(float)) > 0){
         for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++){
-            float pushTmpData = TmpData[i];
-            atomSPK.playBeep(pushTmpData, 200, 10000, false);
-            q.push(&pushTmpData);        
+            if(TmpData[i] !=  '\0'){
+                  float pushTmpData = TmpData[i];
+                  atomSPK.playBeep(int(pushTmpData), 200, 1000, false);
+                  que.push(&pushTmpData);
+                  delay(10);          
+            }
         }
     }
 
@@ -78,20 +80,16 @@ void loop(){
         concentration = 1.1 * pow(ratio, 3) - 3.8 * pow(ratio, 2) + 520 * ratio + 0.62;  // using spec sheet curve
         
         float popData;
-        if(q.isFull()){
-            q.pop(&popData);
+        if(que.isFull()){
+            que.pop(&popData);
         }
-        q.push(&concentration);
+        que.push(&concentration);
 
         /* Debug */
-        //Serial.print(lowpulseoccupancy);
-        //Serial.print(",");
-        //Serial.print(ratio);
-        //Serial.print(",");
-        Serial.print("push: ");
-        Serial.print(concentration);
-        Serial.print(", pop: ");
-        Serial.println(popData);
+        //Serial.print("push: ");
+        //Serial.print(concentration);
+        //Serial.print(", pop: ");
+        //Serial.println(popData);
         
         /* Display */
         if(concentration >= 3000){
