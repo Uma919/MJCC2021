@@ -1,9 +1,11 @@
 #include "M5Atom.h"
 #include "AtomSPK.h"
 #include "Ticker.h"
+#include <cppQueue.h>
 
 ATOMSPK atomSPK;
 Ticker ticker;
+cppQueue q(sizeof(float), 30, FIFO);
 
 /*--- Sensor ---*/
 int pin = 32;
@@ -19,6 +21,25 @@ const float period = 60 * 1;  // Speak once per 1 minutes
 
 /*--- Interruption Processing ---*/
 void speak(){
+    float TmpData[30];
+    
+    while(q.isEmpty() == false){
+        int idx = 0;
+        float popTmpData;
+        q.pop(&popTmpData);
+        TmpData[idx] = popTmpData;
+        idx ++;
+    }
+
+    if(sizeof(TmpData) / sizeof(float) > 0){
+        for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++){
+            float pushTmpData = TmpData[i]
+            atomSPK.playBeep(pushTmpData, 200, 10000, false);
+            q.push(&pushTmpData);        
+        }
+    }
+
+    /* Only simple beep sounds
     if(concentration >= 3000){  // Warning
         for(int n = 0; n < 5; n ++){
             atomSPK.playBeep(2000, 200, 10000, false);
@@ -33,6 +54,7 @@ void speak(){
         atomSPK.playBeep(1000, 200, 10000, false);
         atomSPK.playBeep(2000, 200, 10000, false);
     }
+    */
 }
 
 /*--- Main Program ---*/
@@ -63,12 +85,21 @@ void loop(){
         ratio = lowpulseoccupancy / (sampletime_ms * 10.0);  // Integer percentage 0=>100
         concentration = 1.1 * pow(ratio, 3) - 3.8 * pow(ratio, 2) + 520 * ratio + 0.62;  // using spec sheet curve
         
+        float popData;
+        if(q.isFull()){
+            q.pop(&popData);
+        }
+        q.push(&concentration)
+
         /* Debug */
         //Serial.print(lowpulseoccupancy);
         //Serial.print(",");
         //Serial.print(ratio);
         //Serial.print(",");
-        Serial.println(concentration);
+        Serial.print("push: ");
+        Serial.print(concentration);
+        Serial.print(", pop: ");
+        Serial.println(popData);
         
         /* Display */
         if(concentration >= 3000){
