@@ -12,28 +12,36 @@ unsigned long starttime;
 unsigned long sampletime_ms = 30000;  // sampele 30s ;
 unsigned long lowpulseoccupancy = 0;
 float ratio = 0;
-float concentration = 0;
+float concentration = -1;
 
 /*--- Sound Processing ---*/
 void speak(){
     float TmpData[30];
     int idx = 0;
+
+    for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++) TmpData[i] = -1;
+    
     while(que.isEmpty() == false){
         float popTmpData;
         que.pop(&popTmpData);
         TmpData[idx] = popTmpData;
         idx ++;
+        if((sizeof(TmpData) / sizeof(float)) == idx) break;
     }
     
-    if((sizeof(TmpData) / sizeof(float)) > 0){
+    if(TmpData[0] !=  -1){
         for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++){
-            if(TmpData[i] !=  '\0'){
+            if(TmpData[i] !=  -1){
                   float pushTmpData = TmpData[i];
-                  atomSPK.playBeep(int(pushTmpData), 200, 1000, false);
+                  float f_con = constrain(pushTmpData, 0, 3000);
+                  float f_map = map(f_con, 0, 4000, 0, 2000);
+                  atomSPK.playBeep(int(f_map), 200, 5000, false);
                   que.push(&pushTmpData);
-                  delay(10);          
+                  delay(100);
             }
         }
+        M5.dis.drawpix(0, 0xffffff);  // White
+        delay(100);
     }
 
     /* Only simple beep sounds
@@ -71,7 +79,7 @@ void setup(){
 }
 
 void loop(){
-    /* Sensing */
+    /* Sensor */
     duration = pulseIn(pin, LOW);
     lowpulseoccupancy = lowpulseoccupancy + duration;
 
@@ -91,18 +99,19 @@ void loop(){
         //Serial.print(", pop: ");
         //Serial.println(popData);
         
-        /* Display */
-        if(concentration >= 3000){
-            M5.dis.drawpix(0, 0x00ff00);  // Red
-        }else if(3000 > concentration && concentration > 1000){
-            M5.dis.drawpix(0, 0xffff00);  // Yellow
-        }else if(1000 >= concentration){
-            M5.dis.drawpix(0, 0xff0000);  // Green
-        }
-
         lowpulseoccupancy = 0;
         starttime = millis();
     }
+ 
+    /* RGB LED */
+    if(concentration >= 3000){
+        M5.dis.drawpix(0, 0x00ff00);  // Red
+    }else if(3000 > concentration && concentration > 1000){
+        M5.dis.drawpix(0, 0xffff00);  // Yellow
+    }else if(1000 >= concentration && concentration >= 0){
+        M5.dis.drawpix(0, 0xff0000);  // Green
+    }
 
+    /* Speaker */
     speak();
 }
