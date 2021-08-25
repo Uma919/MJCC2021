@@ -17,7 +17,7 @@ float ratio = 0;
 float concentration = 0;
 
 /*--- Ticker ---*/
-const float period = 60 * 1;  // Speak once per 1 minutes
+const float period = 30;  // Speak once per 30 sec
 
 /*--- Interruption Processing ---*/
 void speak(){
