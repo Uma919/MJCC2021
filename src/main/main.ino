@@ -1,10 +1,8 @@
 #include "M5Atom.h"
 #include "AtomSPK.h"
-#include "Ticker.h"
 #include <cppQueue.h>
 
 ATOMSPK atomSPK;
-Ticker ticker;
 cppQueue q(sizeof(float), 30, FIFO);
 
 /*--- Sensor ---*/
@@ -16,10 +14,7 @@ unsigned long lowpulseoccupancy = 0;
 float ratio = 0;
 float concentration = 0;
 
-/*--- Ticker ---*/
-const float period = 30;  // Speak once per 30 sec
-
-/*--- Interruption Processing ---*/
+/*--- Sound Processing ---*/
 void speak(){
     float TmpData[30];
     
@@ -33,7 +28,7 @@ void speak(){
 
     if(sizeof(TmpData) / sizeof(float) > 0){
         for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++){
-            float pushTmpData = TmpData[i]
+            float pushTmpData = TmpData[i];
             atomSPK.playBeep(pushTmpData, 200, 10000, false);
             q.push(&pushTmpData);        
         }
@@ -71,9 +66,6 @@ void setup(){
 
     /* Speaker */
     atomSPK.begin();
-
-    /* Ticker */
-    ticker.attach(period, speak);
 }
 
 void loop(){
@@ -89,7 +81,7 @@ void loop(){
         if(q.isFull()){
             q.pop(&popData);
         }
-        q.push(&concentration)
+        q.push(&concentration);
 
         /* Debug */
         //Serial.print(lowpulseoccupancy);
@@ -113,4 +105,6 @@ void loop(){
         lowpulseoccupancy = 0;
         starttime = millis();
     }
+
+    speak();
 }
