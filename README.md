@@ -1,8 +1,8 @@
 # MJCC2021 ～Microparticle Sound Generator～
 本リポジトリは[M5Stack Japan Creativity Contest 2021](https://info.switch-science.com/m5stack-creativity-contest-2021)開発リポジトリです．  
-ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，一定時間の時系列波形から音を出力します．  
-<img src="./doc/MicroparticleCounter1.png" width="320px">
-<img src="./doc/MicroparticleCounter2.png" width="320px">
+ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，一定時間における時系列センサデータから音を出力します．  
+<img src="./doc/MicroparticleSoundGenerator_1.png" width="320px">
+<img src="./doc/MicroparticleSoundGenerator_2.png" width="320px">
 
 # 必要なモノ
 ## 制御基板や電子部品
