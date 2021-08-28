@@ -4,7 +4,7 @@
 This repository is the development repository for [M5Stack Japan Creativity Contest 2021](https://info.switch-science.com/m5stack-creativity-contest-2021).  
 <img src="./doc/slide_1.png" width="640px">  
 
-ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，一定時間における時系列センサデータから音を生成し，再生します．  
+「Microparticle Sound Generator」は，ハウスダストやPM2.5をはじめとした微粒子の量をRGBLEDで可視化し，一定時間における時系列センサデータから音を生成して再生します．  
 The Microparticle Sound Generator plays the generated sound with changes in the number of microparticles and also visualizes it by LED.  
 
 ## Concept
