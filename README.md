@@ -8,8 +8,8 @@ This repository is the development repository for [M5Stack Japan Creativity Cont
 The Microparticle Sound Generator plays the generated sound with changes in the number of microparticles and also visualizes it by LED.  
 
 ## Concept
-大気汚染区域に入らないようユーザーをナビゲートします．  
-This device will escort you while avoiding the air pollution zone.  
+大気汚染区域では高周波音を流し，空気が澄んだ場所では心地よい？電子音を流すようにして，大気汚染区域に入らないようユーザーをナビゲートします．  
+When you enter the air pollution zone, the device starts playing high-frequency sounds. On the other hand, the device will play soothing electronic sounds in the clean air area. So, the device will escort you while avoiding the air pollution zone.  
 <img src="./doc/slide_2.png" width="640px">
 
 ## System Configuration
