@@ -17,10 +17,10 @@ float concentration = -1;
 /*--- Sound Processing ---*/
 void speak(){
     float TmpData[30];
-    int idx = 0;
-
     for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++) TmpData[i] = -1;
     
+    /* Extract Sensor Data */
+    int idx = 0;
     while(que.isEmpty() == false){
         float popTmpData;
         que.pop(&popTmpData);
@@ -29,37 +29,21 @@ void speak(){
         if((sizeof(TmpData) / sizeof(float)) == idx) break;
     }
     
+    /* Play Sound */
     if(TmpData[0] !=  -1){
         for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++){
             if(TmpData[i] !=  -1){
-                  float pushTmpData = TmpData[i];
-                  float f_con = constrain(pushTmpData, 0, 3000);
-                  float f_map = map(f_con, 0, 4000, 0, 2000);
-                  atomSPK.playBeep(int(f_map), 200, 5000, false);
-                  que.push(&pushTmpData);
-                  delay(100);
+                float pushTmpData = TmpData[i];
+                float f_con = constrain(pushTmpData, 0, 4000);
+                float f_map = map(f_con, 0, 4000, 0, 2000);
+                atomSPK.playBeep(int(f_map), 200, 5000, false);  // Play Sound
+                que.push(&pushTmpData);
+                delay(100);
             }
         }
-        M5.dis.drawpix(0, 0xffffff);  // White
+        M5.dis.drawpix(0, 0xffffff);  // White Color LED
         delay(100);
     }
-
-    /* Only simple beep sounds
-    if(concentration >= 3000){  // Warning
-        for(int n = 0; n < 5; n ++){
-            atomSPK.playBeep(2000, 200, 10000, false);
-            atomSPK.playBeep(1000, 200, 10000, false);
-        }
-    }else if(3000 > concentration && concentration > 1000){
-        for(int n = 0; n < 2; n ++){  // Caution
-            atomSPK.playBeep(2000, 200, 10000, false);
-            atomSPK.playBeep(1000, 200, 10000, false);
-        }
-    }else if(1000 >= concentration){  // Notice
-        atomSPK.playBeep(1000, 200, 10000, false);
-        atomSPK.playBeep(2000, 200, 10000, false);
-    }
-    */
 }
 
 /*--- Main Program ---*/
@@ -105,11 +89,11 @@ void loop(){
  
     /* RGB LED */
     if(concentration >= 3000){
-        M5.dis.drawpix(0, 0x00ff00);  // Red
+        M5.dis.drawpix(0, 0x00ff00);  // Red Color LED
     }else if(3000 > concentration && concentration > 1000){
-        M5.dis.drawpix(0, 0xffff00);  // Yellow
+        M5.dis.drawpix(0, 0xffff00);  // Yellow Color LED
     }else if(1000 >= concentration && concentration >= 0){
-        M5.dis.drawpix(0, 0xff0000);  // Green
+        M5.dis.drawpix(0, 0xff0000);  // Green Color LED
     }
 
     /* Speaker */
