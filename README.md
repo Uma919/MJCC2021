@@ -12,11 +12,18 @@ The Microparticle Sound Generator plays the generated sound with changes in the 
 When you enter the air pollution zone, the device starts playing high-frequency sounds. On the other hand, the device will play soothing electronic sounds in the clean air area. So, the device will escort you while avoiding the air pollution zone.  
 <img src="./doc/slide_2.png" width="640px">
 
+## Features
+本デバイスの主な特徴は，時系列センサデータを音に変換することにあります．これにより，多種多様な音を再生できるだけでなく，時々刻々と音を変化させることが可能となります．  
+ATOM Liteには液晶ディスプレイが搭載されていないため、時系列センサデータを視覚的に表示することは困難です．加えて，移動中にモニターを見ることは危険です．従って，時系列センサデータを音に変換し、聴覚で案内することが適切だと考えられます．  
+The main feature of the device is that it converts time-series sensor data into sound. It makes that it's possible not only to play a wide variety of sounds but also to change them from time to time.  
+Since "ATOM Lite" isn't equipped with an LCD, it's difficult to display time-series sensor data visually. In addition, it's dangerous to look at the monitor while moving. So, I believe it is appropriate to convert the time-series sensor data into sound and guide the user through the auditory system.
+
 ## System Configuration
+### 動作の流れ
 1. ダストセンサにより微粒子濃度を計測する  
 2. ATOM Liteにおいてセンサデータを保存し，それらに基づいて音を生成する  
 3. ATOM SPKを用いて生成された音を流す  
----
+### Operation Flow
 1. Measure microparticle concentration with dust sensor
 2. Storage sensor data in ATOM Lite and generate sound based on the data
 3. Play the generated sound using ATOM SPK  
