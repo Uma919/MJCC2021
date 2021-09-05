@@ -36,14 +36,14 @@ void playSound(){
                 float pushTmpData = TmpData[i];
                 float dt = constrain(pushTmpData, 0, 3000);
                 float f_map = map(dt, 0, 3000,  500, 3000);
-                float v_map = map(dt, 0, 3000, 4000, 1500);
+                float v_map = map(dt, 0, 3000, 5000, 1500);
                 que.push(&pushTmpData);
                 atomSPK.playBeep(int(f_map), 100, int(v_map), false);  // Play Sound
                 delay(100);
             }
         }
         M5.dis.drawpix(0, 0xffffff);  // White Color LED
-        delay(100);
+        delay(50);
     }
 }
 
@@ -88,6 +88,9 @@ void loop(){
         starttime = millis();
     }
  
+    /* Speaker */
+    playSound();
+    
     /* RGB LED */
     if(concentration >= 2000){
         M5.dis.drawpix(0, 0x00ff00);  // Red Color LED
@@ -96,7 +99,4 @@ void loop(){
     }else if(1000 >= concentration && concentration >= 0){
         M5.dis.drawpix(0, 0xff0000);  // Green Color LED
     }
-
-    /* Speaker */
-    playSound();
 }
