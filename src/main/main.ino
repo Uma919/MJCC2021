@@ -15,7 +15,7 @@ float ratio = 0;
 float concentration = -1;
 
 /*--- Sound Processing ---*/
-void speak(){
+void playSound(){
     float TmpData[30];
     for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++) TmpData[i] = -1;
     
@@ -34,10 +34,11 @@ void speak(){
         for(int i = 0; i < sizeof(TmpData) / sizeof(float); i ++){
             if(TmpData[i] !=  -1){
                 float pushTmpData = TmpData[i];
-                float f_con = constrain(pushTmpData, 0, 4000);
-                float f_map = map(f_con, 0, 4000, 0, 2000);
-                atomSPK.playBeep(int(f_map), 200, 5000, false);  // Play Sound
+                float dt = constrain(pushTmpData, 0, 3000);
+                float f_map = map(dt, 0, 3000,  500, 3000);
+                float v_map = map(dt, 0, 3000, 4000, 1500);
                 que.push(&pushTmpData);
+                atomSPK.playBeep(int(f_map), 100, int(v_map), false);  // Play Sound
                 delay(100);
             }
         }
@@ -88,14 +89,14 @@ void loop(){
     }
  
     /* RGB LED */
-    if(concentration >= 3000){
+    if(concentration >= 2000){
         M5.dis.drawpix(0, 0x00ff00);  // Red Color LED
-    }else if(3000 > concentration && concentration > 1000){
+    }else if(2000 > concentration && concentration > 1000){
         M5.dis.drawpix(0, 0xffff00);  // Yellow Color LED
     }else if(1000 >= concentration && concentration >= 0){
         M5.dis.drawpix(0, 0xff0000);  // Green Color LED
     }
 
     /* Speaker */
-    speak();
+    playSound();
 }
