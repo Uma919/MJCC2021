@@ -43,7 +43,7 @@ void playSound(){
             }
         }
         M5.dis.drawpix(0, 0xffffff);  // White Color LED
-        delay(50);
+        delay(100);
     }
 }
 
