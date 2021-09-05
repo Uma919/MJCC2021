@@ -32,17 +32,21 @@ Since "ATOM Lite" isn't equipped with an LCD, it's difficult to display time-ser
 
 ## Equipment
 ### 制御基板や電子部品
- * ATOM NS4168搭載 スピーカーキット  
-   [販売ページ](https://ssci.to/7092)  
-   [製品ページ](https://docs.m5stack.com/en/atom/atom_spk?id=product-features)    
- * GROVE - Dust Sensor  
-   [販売ページ](https://ssci.to/3081)  
-   [製品ページ](https://wiki.seeedstudio.com/jp/Grove-Dust_Sensor/)  
-   [データシート](https://files.seeedstudio.com/wiki/Grove_Dust_Sensor/resource/Grove_-_Dust_sensor.pdf)  
+* ATOM NS4168搭載 スピーカーキット  
+  [販売ページ](https://ssci.to/7092)  
+  [製品ページ](https://docs.m5stack.com/en/atom/atom_spk?id=product-features)    
+* GROVE - Dust Sensor  
+  [販売ページ](https://ssci.to/3081)  
+  [製品ページ](https://wiki.seeedstudio.com/jp/Grove-Dust_Sensor/)  
+  [データシート](https://files.seeedstudio.com/wiki/Grove_Dust_Sensor/resource/Grove_-_Dust_sensor.pdf)  
+* モバイルバッテリー
+* イヤホンやスピーカー
 ### 筐体部品等
 * 筐体部品(3Dプリント)  
   [筐体部品1](./stl/3dp_parts_1.stl)  
   [筐体部品2](./stl/3dp_parts_2.stl) 
+* [百均モバイルバッテリー(廃番の可能あり)](https://k-tai.watch.impress.co.jp/docs/review/1095722.html)取付部品(オプション)  
+  [モバイルバッテリー取付部品](./stl/3dp_parts_3.stl)
 * その他締結部品  
   M3ねじ  
   M3ナット  
